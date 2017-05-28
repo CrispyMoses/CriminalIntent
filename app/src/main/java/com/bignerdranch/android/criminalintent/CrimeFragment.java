@@ -3,6 +3,7 @@ package com.bignerdranch.android.criminalintent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.format.DateFormat;
@@ -31,6 +32,7 @@ public class CrimeFragment extends Fragment {
     private EditText mTextEditor;
     private Button mDateButton;
     private CheckBox mSolvedCheckBox;
+    private static final String DIALOG_DATE = "DialogDate";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,9 +47,16 @@ public class CrimeFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_crime, container, false);
 
         mDateButton = (Button) v.findViewById(R.id.crime_date);
-        Date date = mCrime.getDate();
+        final Date date = mCrime.getDate();
         mDateButton.setText(DateFormat.format("dd.MM.yyyy",date));
-        mDateButton.setEnabled(false);
+        mDateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fm = getFragmentManager();
+                DatePickerFragment dialog = new DatePickerFragment();
+                dialog.show(fm, DIALOG_DATE);
+            }
+        });
 
         mSolvedCheckBox = (CheckBox) v.findViewById(R.id.crime_solved);
         mSolvedCheckBox.setChecked(mCrime.isSolved());
