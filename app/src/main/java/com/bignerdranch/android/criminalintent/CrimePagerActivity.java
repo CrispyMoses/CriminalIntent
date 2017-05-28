@@ -32,7 +32,7 @@ public class CrimePagerActivity extends FragmentActivity {
             @Override
             public Fragment getItem(int position) {
                 Crime crime = mCrimes.get(position);
-                return new CrimeFragment();
+                return CrimeFragment.newInstance(crime.getId());
             }
 
             @Override
