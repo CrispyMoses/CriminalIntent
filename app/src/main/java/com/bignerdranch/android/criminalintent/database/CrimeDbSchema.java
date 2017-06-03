@@ -1,4 +1,4 @@
-package com.bignerdranch.android.criminalintent;
+package com.bignerdranch.android.criminalintent.database;
 
 /**
  * Created by Crispy on 03.06.2017.
