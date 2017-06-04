@@ -121,4 +121,13 @@ public class CrimeFragment extends Fragment {
     }
 
 
+    private String getCrimeReport() {
+        String solvedString = null;
+        if (mCrime.isSolved()) {
+            solvedString = getString(R.string.crime_report_solved);
+        }
+
+        return null;
+    }
+
 }
